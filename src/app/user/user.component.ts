@@ -1,4 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+// type User = {
+//   img: string,
+//   name: string
+// }
+
+interface User {
+  img: string,
+  name: string
+}
+
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -7,13 +18,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
+  @Input({required: true}) user!: User
   // nos permite emitir eventos... el nombre está claro
-  @Output() select = new EventEmitter();
+  @Output() select = new EventEmitter<string>();
   onSelectUser() {
-    // deberiamos emitir el id pero esto es demo
-    this.select.emit(this.name)
+    // deberiamos emitir el id pero esto es
+    this.select.emit(this.user.name)
   }
 }
 

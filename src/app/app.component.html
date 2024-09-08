@@ -1,11 +1,34 @@
-
-
 <app-header />
 <main>
-  <ul>
-    <li>
-      
-      <app-user [avatar]="users[0].img" [name]="users[0].name"/>
-    </li>
+  <ul id="users">
+    <!-- El track nos permite identificar cada elemento como si fuera una KEY -->
+    <!-- 
+    Esta sintaxis es a partir de v17
+    Para proyectos antiguos se usa
+
+    *ngFor
+    *ngIf
+
+    <app-tasks -ngIf="selectedUser; else fallback ">
+    <ng-template #fallback>
+      EL FALLBACK HTML
+    </ng-template>
+
+    Necesitan ser desbloqueadnos a nivel de componente,
+    añadiendolos al campo Imports
+    
+    -->
+    @for (user of users; track user.name){
+      <li>
+        <app-user [user]="user" (select)="onSelectUser($event)"/>
+      </li>
+    }
   </ul>
+
+  @if (selectedUser){
+    <app-tasks [name]="selectedUser.name" [tasks]="[]"/>
+  }
+  @else {
+    <h3>Select a User to see their tasks!</h3>
+  }
 </main>
