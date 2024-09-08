@@ -19,16 +19,19 @@
     
     -->
     @for (user of users; track user.name){
-      <li>
-        <app-user [user]="user" (select)="onSelectUser($event)"/>
-      </li>
+    <li>
+      <app-user
+        [selected]="isSelected(user)"
+        [user]="user"
+        (select)="onSelectUser($event)"
+      />
+    </li>
     }
   </ul>
 
   @if (selectedUser){
-    <app-tasks [name]="selectedUser.name"/>
-  }
-  @else {
-    <h3>Select a User to see their tasks!</h3>
+  <app-tasks [name]="selectedUser.name" />
+  } @else {
+  <h3>Select a User to see their tasks!</h3>
   }
 </main>

@@ -1,0 +1,21 @@
+<form action="">
+  <p>
+    <label for="title">
+      Título
+      <input type="text" id="title" name="title" [(ngModel)]="title" />
+    </label>
+  </p>
+  <p>
+    <label for="date">
+      Fecha límite
+      <input type="text" id="date" name="date" [(ngModel)]="date" />
+    </label>
+  </p>
+  <p>
+    <label for="summary">
+      Resumen
+      <input type="text" id="summary" name="summary" [(ngModel)]="summary" />
+    </label>
+</p>
+<button (click)="onCreateTask(); $event.preventDefault()">CLICK</button>
+</form>

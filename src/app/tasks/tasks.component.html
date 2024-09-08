@@ -1,8 +1,15 @@
+@if (isAddingNewTask) { 
+
+    <section id="new-task">
+        <app-create-task [userId]="name" (create)="addTask($event)"/>
+    </section>
+} @else {
+
 <section id="tasks">
   <header>
     <h2>Tareas de {{ name }}</h2>
     <menu>
-      <button>Añadir tarea</button>
+      <button (click)="onStartNewTask()">Añadir tarea</button>
     </menu>
   </header>
 
@@ -10,8 +17,9 @@
     @for (task of selectedUserTasks; track task.id) {
 
     <li>
-      <app-task [task]="task" />
+      <app-task [task]="task" (complete)="this.removeTask($event)" />
     </li>
     }
   </ul>
 </section>
+}

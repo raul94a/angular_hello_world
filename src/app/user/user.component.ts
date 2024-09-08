@@ -18,6 +18,7 @@ import {type User } from './user.model';
 export class UserComponent {
   @Input({required: true}) user!: User
   // nos permite emitir eventos... el nombre está claro
+  @Input({required: true}) selected!: boolean;
   @Output() select = new EventEmitter<string>();
   onSelectUser() {
     // deberiamos emitir el id pero esto es

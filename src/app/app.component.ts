@@ -4,6 +4,7 @@ import { Header } from "./header/header.component";
 import { UserComponent } from "./user/user.component";
 import { MOCK_USES } from './user/mock-uses';
 import { TasksComponent } from "./tasks/tasks.component";
+import { User } from './user/user.model';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,11 @@ export class AppComponent {
 
   get selectedUser() {
     return this.users.find((user) => user.name === this.selectedUserName)
+  }
+
+  isSelected(user?: User) : boolean{
+    if(user === undefined || this.selectedUserName === undefined) return false
+    return user.name == this.selectedUserName
   }
 
   onSelectUser(name: string) {
